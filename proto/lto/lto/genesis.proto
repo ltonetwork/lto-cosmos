@@ -1,0 +1,14 @@
+syntax = "proto3";
+package lto.lto;
+
+import "gogoproto/gogo.proto";
+import "lto/lto/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "lto/x/lto/types";
+
+// GenesisState defines the lto module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
