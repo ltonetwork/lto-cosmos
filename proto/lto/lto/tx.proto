@@ -7,7 +7,18 @@ option go_package = "lto/x/lto/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc CreateAnchor(MsgCreateAnchor) returns (MsgCreateAnchorResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateAnchor {
+  string creator = 1;
+  string hash = 2;
+  string encoding = 3;
+}
+
+message MsgCreateAnchorResponse {
+  uint64 id = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message
