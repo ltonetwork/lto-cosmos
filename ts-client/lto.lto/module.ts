@@ -7,10 +7,21 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
+import { MsgCreateAnchor } from "./types/lto/lto/tx";
 
 
-export {  };
+export { MsgCreateAnchor };
 
+type sendMsgCreateAnchorParams = {
+  value: MsgCreateAnchor,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type msgCreateAnchorParams = {
+  value: MsgCreateAnchor,
+};
 
 
 export const registry = new Registry(msgTypes);
@@ -30,6 +41,28 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
+		async sendMsgCreateAnchor({ value, fee, memo }: sendMsgCreateAnchorParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateAnchor: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateAnchor({ value: MsgCreateAnchor.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateAnchor: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		
+		msgCreateAnchor({ value }: msgCreateAnchorParams): EncodeObject {
+			try {
+				return { typeUrl: "/lto.lto.MsgCreateAnchor", value: MsgCreateAnchor.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateAnchor: Could not create message: ' + e.message)
+			}
+		},
 		
 	}
 };

@@ -5,7 +5,7 @@ package lto.lto;
 option go_package = "lto/x/lto/types";
 
 message Anchor {
-    string anchor = 1;
+    string creator = 1;
     uint64 id = 2;
     string hash = 3;
     string encoding = 4;
