@@ -23,10 +23,15 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Anchor struct {
-	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Id       uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	Hash     string `protobuf:"bytes,3,opt,name=hash,proto3" json:"hash,omitempty"`
-	Encoding string `protobuf:"bytes,4,opt,name=encoding,proto3" json:"encoding,omitempty"`
+	TxType    []byte `protobuf:"bytes,1,opt,name=txType,proto3" json:"txType,omitempty"`
+	Version   []byte `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	ChainId   []byte `protobuf:"bytes,3,opt,name=chainId,proto3" json:"chainId,omitempty"`
+	Timestamp uint32 `protobuf:"varint,4,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	KeyType   []byte `protobuf:"bytes,5,opt,name=keyType,proto3" json:"keyType,omitempty"`
+	PubKey    string `protobuf:"bytes,6,opt,name=pubKey,proto3" json:"pubKey,omitempty"`
+	Fee       uint64 `protobuf:"varint,7,opt,name=fee,proto3" json:"fee,omitempty"`
+	Anchor    string `protobuf:"bytes,8,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	Encoding  string `protobuf:"bytes,9,opt,name=encoding,proto3" json:"encoding,omitempty"`
 }
 
 func (m *Anchor) Reset()         { *m = Anchor{} }
@@ -62,23 +67,58 @@ func (m *Anchor) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Anchor proto.InternalMessageInfo
 
-func (m *Anchor) GetCreator() string {
+func (m *Anchor) GetTxType() []byte {
 	if m != nil {
-		return m.Creator
+		return m.TxType
 	}
-	return ""
+	return nil
 }
 
-func (m *Anchor) GetId() uint64 {
+func (m *Anchor) GetVersion() []byte {
 	if m != nil {
-		return m.Id
+		return m.Version
+	}
+	return nil
+}
+
+func (m *Anchor) GetChainId() []byte {
+	if m != nil {
+		return m.ChainId
+	}
+	return nil
+}
+
+func (m *Anchor) GetTimestamp() uint32 {
+	if m != nil {
+		return m.Timestamp
 	}
 	return 0
 }
 
-func (m *Anchor) GetHash() string {
+func (m *Anchor) GetKeyType() []byte {
 	if m != nil {
-		return m.Hash
+		return m.KeyType
+	}
+	return nil
+}
+
+func (m *Anchor) GetPubKey() string {
+	if m != nil {
+		return m.PubKey
+	}
+	return ""
+}
+
+func (m *Anchor) GetFee() uint64 {
+	if m != nil {
+		return m.Fee
+	}
+	return 0
+}
+
+func (m *Anchor) GetAnchor() string {
+	if m != nil {
+		return m.Anchor
 	}
 	return ""
 }
@@ -97,18 +137,23 @@ func init() {
 func init() { proto.RegisterFile("lto/lto/anchor.proto", fileDescriptor_2a6b95aed5a320d0) }
 
 var fileDescriptor_2a6b95aed5a320d0 = []byte{
-	// 172 bytes of a gzipped FileDescriptorProto
+	// 250 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc9, 0x29, 0xc9, 0xd7,
 	0x07, 0xe1, 0xc4, 0xbc, 0xe4, 0x8c, 0xfc, 0x22, 0xbd, 0x82, 0xa2, 0xfc, 0x92, 0x7c, 0x21, 0xf6,
-	0x9c, 0x92, 0x7c, 0xbd, 0x9c, 0x92, 0x7c, 0xa5, 0x24, 0x2e, 0x36, 0x47, 0xb0, 0x84, 0x90, 0x04,
-	0x17, 0x7b, 0x72, 0x51, 0x6a, 0x62, 0x49, 0x7e, 0x91, 0x04, 0xa3, 0x02, 0xa3, 0x06, 0x67, 0x10,
-	0x8c, 0x2b, 0xc4, 0xc7, 0xc5, 0x94, 0x99, 0x22, 0xc1, 0xa4, 0xc0, 0xa8, 0xc1, 0x12, 0xc4, 0x94,
-	0x99, 0x22, 0x24, 0xc4, 0xc5, 0x92, 0x91, 0x58, 0x9c, 0x21, 0xc1, 0x0c, 0x56, 0x06, 0x66, 0x0b,
-	0x49, 0x71, 0x71, 0xa4, 0xe6, 0x25, 0xe7, 0xa7, 0x64, 0xe6, 0xa5, 0x4b, 0xb0, 0x80, 0xc5, 0xe1,
-	0x7c, 0x27, 0xcd, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71,
-	0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0xe2, 0x07, 0x39,
-	0xac, 0x02, 0xec, 0xbc, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0xb0, 0xf3, 0x8c, 0x01, 0x01,
-	0x00, 0x00, 0xff, 0xff, 0xa1, 0xba, 0x5c, 0xc9, 0xb6, 0x00, 0x00, 0x00,
+	0x9c, 0x92, 0x7c, 0xbd, 0x9c, 0x92, 0x7c, 0xa5, 0x57, 0x8c, 0x5c, 0x6c, 0x8e, 0x60, 0x19, 0x21,
+	0x31, 0x2e, 0xb6, 0x92, 0x8a, 0x90, 0xca, 0x82, 0x54, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x9e, 0x20,
+	0x28, 0x4f, 0x48, 0x82, 0x8b, 0xbd, 0x2c, 0xb5, 0xa8, 0x38, 0x33, 0x3f, 0x4f, 0x82, 0x09, 0x2c,
+	0x01, 0xe3, 0x82, 0x64, 0x92, 0x33, 0x12, 0x33, 0xf3, 0x3c, 0x53, 0x24, 0x98, 0x21, 0x32, 0x50,
+	0xae, 0x90, 0x0c, 0x17, 0x67, 0x49, 0x66, 0x6e, 0x6a, 0x71, 0x49, 0x62, 0x6e, 0x81, 0x04, 0x8b,
+	0x02, 0xa3, 0x06, 0x6f, 0x10, 0x42, 0x00, 0xa4, 0x2f, 0x3b, 0xb5, 0x12, 0x6c, 0x15, 0x2b, 0x44,
+	0x1f, 0x94, 0x0b, 0x72, 0x43, 0x41, 0x69, 0x92, 0x77, 0x6a, 0xa5, 0x04, 0x9b, 0x02, 0xa3, 0x06,
+	0x67, 0x10, 0x94, 0x27, 0x24, 0xc0, 0xc5, 0x9c, 0x96, 0x9a, 0x2a, 0xc1, 0xae, 0xc0, 0xa8, 0xc1,
+	0x12, 0x04, 0x62, 0x82, 0x54, 0x42, 0x7c, 0x24, 0xc1, 0x01, 0x51, 0x09, 0xe1, 0x09, 0x49, 0x71,
+	0x71, 0xa4, 0xe6, 0x25, 0xe7, 0xa7, 0x64, 0xe6, 0xa5, 0x4b, 0x70, 0x82, 0x65, 0xe0, 0x7c, 0x27,
+	0xcd, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63,
+	0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0xe2, 0x07, 0x85, 0x50, 0x05,
+	0x38, 0x9c, 0x4a, 0x2a, 0x0b, 0x52, 0x8b, 0x93, 0xd8, 0xc0, 0xe1, 0x64, 0x0c, 0x08, 0x00, 0x00,
+	0xff, 0xff, 0x95, 0xf9, 0x9b, 0x4b, 0x3f, 0x01, 0x00, 0x00,
 }
 
 func (m *Anchor) Marshal() (dAtA []byte, err error) {
@@ -136,24 +181,57 @@ func (m *Anchor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Encoding)
 		i = encodeVarintAnchor(dAtA, i, uint64(len(m.Encoding)))
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x4a
 	}
-	if len(m.Hash) > 0 {
-		i -= len(m.Hash)
-		copy(dAtA[i:], m.Hash)
-		i = encodeVarintAnchor(dAtA, i, uint64(len(m.Hash)))
+	if len(m.Anchor) > 0 {
+		i -= len(m.Anchor)
+		copy(dAtA[i:], m.Anchor)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.Anchor)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if m.Fee != 0 {
+		i = encodeVarintAnchor(dAtA, i, uint64(m.Fee))
+		i--
+		dAtA[i] = 0x38
+	}
+	if len(m.PubKey) > 0 {
+		i -= len(m.PubKey)
+		copy(dAtA[i:], m.PubKey)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.PubKey)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.KeyType) > 0 {
+		i -= len(m.KeyType)
+		copy(dAtA[i:], m.KeyType)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.KeyType)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.Timestamp != 0 {
+		i = encodeVarintAnchor(dAtA, i, uint64(m.Timestamp))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.ChainId) > 0 {
+		i -= len(m.ChainId)
+		copy(dAtA[i:], m.ChainId)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.ChainId)))
 		i--
 		dAtA[i] = 0x1a
 	}
-	if m.Id != 0 {
-		i = encodeVarintAnchor(dAtA, i, uint64(m.Id))
+	if len(m.Version) > 0 {
+		i -= len(m.Version)
+		copy(dAtA[i:], m.Version)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.Version)))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x12
 	}
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintAnchor(dAtA, i, uint64(len(m.Creator)))
+	if len(m.TxType) > 0 {
+		i -= len(m.TxType)
+		copy(dAtA[i:], m.TxType)
+		i = encodeVarintAnchor(dAtA, i, uint64(len(m.TxType)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -177,14 +255,33 @@ func (m *Anchor) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Creator)
+	l = len(m.TxType)
 	if l > 0 {
 		n += 1 + l + sovAnchor(uint64(l))
 	}
-	if m.Id != 0 {
-		n += 1 + sovAnchor(uint64(m.Id))
+	l = len(m.Version)
+	if l > 0 {
+		n += 1 + l + sovAnchor(uint64(l))
 	}
-	l = len(m.Hash)
+	l = len(m.ChainId)
+	if l > 0 {
+		n += 1 + l + sovAnchor(uint64(l))
+	}
+	if m.Timestamp != 0 {
+		n += 1 + sovAnchor(uint64(m.Timestamp))
+	}
+	l = len(m.KeyType)
+	if l > 0 {
+		n += 1 + l + sovAnchor(uint64(l))
+	}
+	l = len(m.PubKey)
+	if l > 0 {
+		n += 1 + l + sovAnchor(uint64(l))
+	}
+	if m.Fee != 0 {
+		n += 1 + sovAnchor(uint64(m.Fee))
+	}
+	l = len(m.Anchor)
 	if l > 0 {
 		n += 1 + l + sovAnchor(uint64(l))
 	}
@@ -232,9 +329,9 @@ func (m *Anchor) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field TxType", wireType)
 			}
-			var stringLen uint64
+			var byteLen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnchor
@@ -244,29 +341,31 @@ func (m *Anchor) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				byteLen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			if byteLen < 0 {
 				return ErrInvalidLengthAnchor
 			}
-			postIndex := iNdEx + intStringLen
+			postIndex := iNdEx + byteLen
 			if postIndex < 0 {
 				return ErrInvalidLengthAnchor
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
+			m.TxType = append(m.TxType[:0], dAtA[iNdEx:postIndex]...)
+			if m.TxType == nil {
+				m.TxType = []byte{}
+			}
 			iNdEx = postIndex
 		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Version", wireType)
 			}
-			m.Id = 0
+			var byteLen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnchor
@@ -276,14 +375,116 @@ func (m *Anchor) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
+				byteLen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			if byteLen < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Version = append(m.Version[:0], dAtA[iNdEx:postIndex]...)
+			if m.Version == nil {
+				m.Version = []byte{}
+			}
+			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Hash", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ChainId", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAnchor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChainId = append(m.ChainId[:0], dAtA[iNdEx:postIndex]...)
+			if m.ChainId == nil {
+				m.ChainId = []byte{}
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+			}
+			m.Timestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAnchor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Timestamp |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field KeyType", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAnchor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.KeyType = append(m.KeyType[:0], dAtA[iNdEx:postIndex]...)
+			if m.KeyType == nil {
+				m.KeyType = []byte{}
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PubKey", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -311,9 +512,60 @@ func (m *Anchor) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Hash = string(dAtA[iNdEx:postIndex])
+			m.PubKey = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Fee", wireType)
+			}
+			m.Fee = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAnchor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Fee |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Anchor", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAnchor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAnchor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Anchor = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Encoding", wireType)
 			}

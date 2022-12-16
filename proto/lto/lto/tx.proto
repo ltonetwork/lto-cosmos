@@ -18,7 +18,7 @@ message MsgCreateAnchor {
 }
 
 message MsgCreateAnchorResponse {
-  uint64 id = 1;
+  bool success = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message

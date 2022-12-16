@@ -10,17 +10,36 @@
  */
 
 export interface LtoAnchor {
-  creator?: string;
+  /** @format byte */
+  txType?: string;
+
+  /** @format byte */
+  version?: string;
+
+  /** @format byte */
+  chainId?: string;
+
+  /** @format int64 */
+  timestamp?: number;
+
+  /** @format byte */
+  keyType?: string;
+  pubKey?: string;
 
   /** @format uint64 */
-  id?: string;
-  hash?: string;
+  fee?: string;
+  anchor?: string;
+
+  /**
+   * uint32 anchorCount = 8;
+   *    bytes anchorLength = 9;
+   *    bytes anchors = 10;
+   */
   encoding?: string;
 }
 
 export interface LtoMsgCreateAnchorResponse {
-  /** @format uint64 */
-  id?: string;
+  success?: boolean;
 }
 
 /**

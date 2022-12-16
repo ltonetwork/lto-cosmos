@@ -44697,15 +44697,34 @@ paths:
                 items:
                   type: object
                   properties:
-                    creator:
+                    txType:
                       type: string
-                    id:
+                      format: byte
+                    version:
+                      type: string
+                      format: byte
+                    chainId:
+                      type: string
+                      format: byte
+                    timestamp:
+                      type: integer
+                      format: int64
+                    keyType:
+                      type: string
+                      format: byte
+                    pubKey:
+                      type: string
+                    fee:
                       type: string
                       format: uint64
-                    hash:
+                    anchor:
                       type: string
                     encoding:
                       type: string
+                      title: |-
+                        uint32 anchorCount = 8;
+                           bytes anchorLength = 9;
+                           bytes anchors = 10;
                 title: returning a list of anchors
               pagination:
                 title: adding pagination to response
@@ -74437,21 +74456,39 @@ definitions:
   lto.lto.Anchor:
     type: object
     properties:
-      creator:
+      txType:
         type: string
-      id:
+        format: byte
+      version:
+        type: string
+        format: byte
+      chainId:
+        type: string
+        format: byte
+      timestamp:
+        type: integer
+        format: int64
+      keyType:
+        type: string
+        format: byte
+      pubKey:
+        type: string
+      fee:
         type: string
         format: uint64
-      hash:
+      anchor:
         type: string
       encoding:
         type: string
+        title: |-
+          uint32 anchorCount = 8;
+             bytes anchorLength = 9;
+             bytes anchors = 10;
   lto.lto.MsgCreateAnchorResponse:
     type: object
     properties:
-      id:
-        type: string
-        format: uint64
+      success:
+        type: boolean
   lto.lto.Params:
     type: object
     description: Params defines the parameters for the module.
@@ -74463,15 +74500,34 @@ definitions:
         items:
           type: object
           properties:
-            creator:
+            txType:
               type: string
-            id:
+              format: byte
+            version:
+              type: string
+              format: byte
+            chainId:
+              type: string
+              format: byte
+            timestamp:
+              type: integer
+              format: int64
+            keyType:
+              type: string
+              format: byte
+            pubKey:
+              type: string
+            fee:
               type: string
               format: uint64
-            hash:
+            anchor:
               type: string
             encoding:
               type: string
+              title: |-
+                uint32 anchorCount = 8;
+                   bytes anchorLength = 9;
+                   bytes anchors = 10;
         title: returning a list of anchors
       pagination:
         title: adding pagination to response
