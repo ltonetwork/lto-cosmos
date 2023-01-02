@@ -1,4 +1,7 @@
-# lto
+![LTO github readme](https://user-images.githubusercontent.com/100821/210237111-e10cdc55-1236-4b39-b357-6dba1c96a97e.png)
+
+# Cosmos experiments
+
 **lto** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
 ## Get started
