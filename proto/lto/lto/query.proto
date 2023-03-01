@@ -20,8 +20,7 @@ service Query {
 	rpc NetworkType(QueryNetworkTypeRequest) returns (QueryNetworkTypeResponse) {
 		option (google.api.http).get = "/lto/lto/network_type";
 	}
-
-// Queries a list of Anchors items.
+  // Queries a list of Anchors items.
 	rpc Anchors(QueryAnchorsRequest) returns (QueryAnchorsResponse) {
 		option (google.api.http).get = "/lto/lto/anchors";
 	}
