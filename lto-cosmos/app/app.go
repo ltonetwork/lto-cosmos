@@ -105,13 +105,13 @@ import (
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
-	appparams "lto/app/params"
-	"lto/docs"
+	appparams "lto-cosmos/app/params"
+	"lto-cosmos/docs"
 )
 
 const (
 	AccountAddressPrefix = "cosmos"
-	Name                 = "lto"
+	Name                 = "lto-cosmos"
 )
 
 // this line is used by starport scaffolding # stargate/wasm/app/enabledProposals

@@ -1,4 +1,4 @@
-module lto
+module lto-cosmos
 
 go 1.19
 

@@ -35,8 +35,8 @@ import (
 	dbm "github.com/tendermint/tm-db"
 	// this line is used by starport scaffolding # root/moduleImport
 
-	"lto/app"
-	appparams "lto/app/params"
+	"lto-cosmos/app"
+	appparams "lto-cosmos/app/params"
 )
 
 // NewRootCmd creates a new root command for a Cosmos SDK application
@@ -54,7 +54,7 @@ func NewRootCmd() (*cobra.Command, appparams.EncodingConfig) {
 
 	rootCmd := &cobra.Command{
 		Use:   app.Name + "d",
-		Short: "Start lto node",
+		Short: "Start ltocosmos node",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())

@@ -3,7 +3,7 @@ package cmd
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"lto/app"
+	"lto-cosmos/app"
 )
 
 func initSDKConfig() {

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"lto/app"
+	"lto-cosmos/app"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
