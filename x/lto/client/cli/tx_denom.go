@@ -12,16 +12,16 @@ import (
 
 func CmdCreateDenom() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-denom [denom] [description] [ticket] [precision] [url] [max-supply] [supply] [can-change-max-supply]",
+		Use:   "create-denom [denom] [description] [ticker] [precision] [url] [max-supply] [can-change-max-supply]",
 		Short: "Create a new Denom",
-		Args:  cobra.ExactArgs(8),
+		Args:  cobra.ExactArgs(7),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexDenom := args[0]
 
 			// Get value arguments
 			argDescription := args[1]
-			argTicket := args[2]
+			argTicker := args[2]
 			argPrecision, err := cast.ToInt32E(args[3])
 			if err != nil {
 				return err
@@ -31,11 +31,7 @@ func CmdCreateDenom() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			argSupply, err := cast.ToInt32E(args[6])
-			if err != nil {
-				return err
-			}
-			argCanChangeMaxSupply, err := cast.ToBoolE(args[7])
+			argCanChangeMaxSupply, err := cast.ToBoolE(args[6])
 			if err != nil {
 				return err
 			}
@@ -49,11 +45,10 @@ func CmdCreateDenom() *cobra.Command {
 				clientCtx.GetFromAddress().String(),
 				indexDenom,
 				argDescription,
-				argTicket,
+				argTicker,
 				argPrecision,
 				argUrl,
 				argMaxSupply,
-				argSupply,
 				argCanChangeMaxSupply,
 			)
 			if err := msg.ValidateBasic(); err != nil {
@@ -70,30 +65,21 @@ func CmdCreateDenom() *cobra.Command {
 
 func CmdUpdateDenom() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-denom [denom] [description] [ticket] [precision] [url] [max-supply] [supply] [can-change-max-supply]",
+		Use:   "update-denom [denom] [description] [url] [max-supply] [can-change-max-supply]",
 		Short: "Update a Denom",
-		Args:  cobra.ExactArgs(8),
+		Args:  cobra.ExactArgs(5),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexDenom := args[0]
 
 			// Get value arguments
 			argDescription := args[1]
-			argTicket := args[2]
-			argPrecision, err := cast.ToInt32E(args[3])
+			argUrl := args[2]
+			argMaxSupply, err := cast.ToInt32E(args[3])
 			if err != nil {
 				return err
 			}
-			argUrl := args[4]
-			argMaxSupply, err := cast.ToInt32E(args[5])
-			if err != nil {
-				return err
-			}
-			argSupply, err := cast.ToInt32E(args[6])
-			if err != nil {
-				return err
-			}
-			argCanChangeMaxSupply, err := cast.ToBoolE(args[7])
+			argCanChangeMaxSupply, err := cast.ToBoolE(args[4])
 			if err != nil {
 				return err
 			}
@@ -107,11 +93,8 @@ func CmdUpdateDenom() *cobra.Command {
 				clientCtx.GetFromAddress().String(),
 				indexDenom,
 				argDescription,
-				argTicket,
-				argPrecision,
 				argUrl,
 				argMaxSupply,
-				argSupply,
 				argCanChangeMaxSupply,
 			)
 			if err := msg.ValidateBasic(); err != nil {

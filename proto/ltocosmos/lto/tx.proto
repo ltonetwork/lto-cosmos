@@ -15,12 +15,11 @@ message MsgCreateDenom {
   string owner              = 1;
   string denom              = 2;
   string description        = 3;
-  string ticket             = 4;
+  string ticker             = 4;
   int32  precision          = 5;
   string url                = 6;
   int32  maxSupply          = 7;
-  int32  supply             = 8;
-  bool   canChangeMaxSupply = 9;
+  bool   canChangeMaxSupply = 8;
 }
 
 message MsgCreateDenomResponse {}
@@ -29,12 +28,9 @@ message MsgUpdateDenom {
   string owner              = 1;
   string denom              = 2;
   string description        = 3;
-  string ticket             = 4;
-  int32  precision          = 5;
-  string url                = 6;
-  int32  maxSupply          = 7;
-  int32  supply             = 8;
-  bool   canChangeMaxSupply = 9;
+  string url                = 4;
+  int32  maxSupply          = 5;
+  bool   canChangeMaxSupply = 6;
 }
 
 message MsgUpdateDenomResponse {}

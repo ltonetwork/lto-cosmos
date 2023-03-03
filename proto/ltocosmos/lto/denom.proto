@@ -6,7 +6,7 @@ option go_package = "lto-cosmos/x/lto/types";
 message Denom {
   string denom = 1; 
   string description = 2; 
-  string ticket = 3; 
+  string ticker = 3; 
   int32 precision = 4; 
   string url = 5; 
   int32 maxSupply = 6; 

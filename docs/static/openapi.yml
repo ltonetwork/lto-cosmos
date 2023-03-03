@@ -43882,7 +43882,7 @@ paths:
                       type: string
                     description:
                       type: string
-                    ticket:
+                    ticker:
                       type: string
                     precision:
                       type: integer
@@ -44021,7 +44021,7 @@ paths:
                     type: string
                   description:
                     type: string
-                  ticket:
+                  ticker:
                     type: string
                   precision:
                     type: integer
@@ -71640,7 +71640,7 @@ definitions:
         type: string
       description:
         type: string
-      ticket:
+      ticker:
         type: string
       precision:
         type: integer
@@ -71676,7 +71676,7 @@ definitions:
               type: string
             description:
               type: string
-            ticket:
+            ticker:
               type: string
             precision:
               type: integer
@@ -71729,7 +71729,7 @@ definitions:
             type: string
           description:
             type: string
-          ticket:
+          ticker:
             type: string
           precision:
             type: integer

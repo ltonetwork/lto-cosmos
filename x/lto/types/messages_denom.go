@@ -16,11 +16,10 @@ func NewMsgCreateDenom(
 	owner string,
 	denom string,
 	description string,
-	ticket string,
+	ticker string,
 	precision int32,
 	url string,
 	maxSupply int32,
-	supply int32,
 	canChangeMaxSupply bool,
 
 ) *MsgCreateDenom {
@@ -28,11 +27,10 @@ func NewMsgCreateDenom(
 		Owner:              owner,
 		Denom:              denom,
 		Description:        description,
-		Ticket:             ticket,
+		Ticker:             ticker,
 		Precision:          precision,
 		Url:                url,
 		MaxSupply:          maxSupply,
-		Supply:             supply,
 		CanChangeMaxSupply: canChangeMaxSupply,
 	}
 }
@@ -72,23 +70,16 @@ func NewMsgUpdateDenom(
 	owner string,
 	denom string,
 	description string,
-	ticket string,
-	precision int32,
 	url string,
 	maxSupply int32,
-	supply int32,
 	canChangeMaxSupply bool,
-
 ) *MsgUpdateDenom {
 	return &MsgUpdateDenom{
 		Owner:              owner,
 		Denom:              denom,
 		Description:        description,
-		Ticket:             ticket,
-		Precision:          precision,
 		Url:                url,
 		MaxSupply:          maxSupply,
-		Supply:             supply,
 		CanChangeMaxSupply: canChangeMaxSupply,
 	}
 }
