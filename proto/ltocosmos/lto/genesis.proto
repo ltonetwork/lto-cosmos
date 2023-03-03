@@ -1,0 +1,12 @@
+syntax = "proto3";
+package ltocosmos.lto;
+
+import "gogoproto/gogo.proto";
+import "ltocosmos/lto/params.proto";
+
+option go_package = "lto-cosmos/x/lto/types";
+
+// GenesisState defines the lto module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}

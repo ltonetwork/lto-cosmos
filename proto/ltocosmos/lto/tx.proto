@@ -1,0 +1,7 @@
+syntax = "proto3";
+package ltocosmos.lto;
+
+option go_package = "lto-cosmos/x/lto/types";
+
+// Msg defines the Msg service.
+service Msg {}
