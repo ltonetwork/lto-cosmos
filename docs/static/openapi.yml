@@ -71659,8 +71659,6 @@ definitions:
         type: string
   ltocosmos.lto.MsgCreateDenomResponse:
     type: object
-  ltocosmos.lto.MsgDeleteDenomResponse:
-    type: object
   ltocosmos.lto.MsgUpdateDenomResponse:
     type: object
   ltocosmos.lto.Params:

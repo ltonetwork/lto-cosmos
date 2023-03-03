@@ -8,7 +8,6 @@ import (
 const (
 	TypeMsgCreateDenom = "create_denom"
 	TypeMsgUpdateDenom = "update_denom"
-	TypeMsgDeleteDenom = "delete_denom"
 )
 
 var _ sdk.Msg = &MsgCreateDenom{}
@@ -116,47 +115,6 @@ func (msg *MsgUpdateDenom) GetSignBytes() []byte {
 }
 
 func (msg *MsgUpdateDenom) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Owner)
-	if err != nil {
-		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid owner address (%s)", err)
-	}
-	return nil
-}
-
-var _ sdk.Msg = &MsgDeleteDenom{}
-
-func NewMsgDeleteDenom(
-	owner string,
-	denom string,
-
-) *MsgDeleteDenom {
-	return &MsgDeleteDenom{
-		Owner: owner,
-		Denom: denom,
-	}
-}
-func (msg *MsgDeleteDenom) Route() string {
-	return RouterKey
-}
-
-func (msg *MsgDeleteDenom) Type() string {
-	return TypeMsgDeleteDenom
-}
-
-func (msg *MsgDeleteDenom) GetSigners() []sdk.AccAddress {
-	owner, err := sdk.AccAddressFromBech32(msg.Owner)
-	if err != nil {
-		panic(err)
-	}
-	return []sdk.AccAddress{owner}
-}
-
-func (msg *MsgDeleteDenom) GetSignBytes() []byte {
-	bz := ModuleCdc.MustMarshalJSON(msg)
-	return sdk.MustSortJSON(bz)
-}
-
-func (msg *MsgDeleteDenom) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Owner)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid owner address (%s)", err)

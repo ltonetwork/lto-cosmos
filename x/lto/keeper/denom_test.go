@@ -4,12 +4,13 @@ import (
 	"strconv"
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/stretchr/testify/require"
 	keepertest "lto-cosmos/testutil/keeper"
 	"lto-cosmos/testutil/nullify"
 	"lto-cosmos/x/lto/keeper"
 	"lto-cosmos/x/lto/types"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/stretchr/testify/require"
 )
 
 // Prevent strconv unused error
@@ -37,19 +38,6 @@ func TestDenomGet(t *testing.T) {
 			nullify.Fill(&item),
 			nullify.Fill(&rst),
 		)
-	}
-}
-func TestDenomRemove(t *testing.T) {
-	keeper, ctx := keepertest.LtoKeeper(t)
-	items := createNDenom(keeper, ctx, 10)
-	for _, item := range items {
-		keeper.RemoveDenom(ctx,
-			item.Denom,
-		)
-		_, found := keeper.GetDenom(ctx,
-			item.Denom,
-		)
-		require.False(t, found)
 	}
 }
 

@@ -3,9 +3,10 @@ package keeper
 import (
 	"context"
 
+	"lto-cosmos/x/lto/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"lto-cosmos/x/lto/types"
 )
 
 func (k msgServer) CreateDenom(goCtx context.Context, msg *types.MsgCreateDenom) (*types.MsgCreateDenomResponse, error) {
@@ -71,29 +72,4 @@ func (k msgServer) UpdateDenom(goCtx context.Context, msg *types.MsgUpdateDenom)
 	k.SetDenom(ctx, denom)
 
 	return &types.MsgUpdateDenomResponse{}, nil
-}
-
-func (k msgServer) DeleteDenom(goCtx context.Context, msg *types.MsgDeleteDenom) (*types.MsgDeleteDenomResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	// Check if the value exists
-	valFound, isFound := k.GetDenom(
-		ctx,
-		msg.Denom,
-	)
-	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
-	}
-
-	// Checks if the the msg owner is the same as the current owner
-	if msg.Owner != valFound.Owner {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-
-	k.RemoveDenom(
-		ctx,
-		msg.Denom,
-	)
-
-	return &types.MsgDeleteDenomResponse{}, nil
 }

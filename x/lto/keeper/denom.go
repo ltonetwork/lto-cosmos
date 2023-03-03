@@ -1,9 +1,10 @@
 package keeper
 
 import (
+	"lto-cosmos/x/lto/types"
+
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"lto-cosmos/x/lto/types"
 )
 
 // SetDenom set a specific denom in the store from its index
@@ -32,18 +33,6 @@ func (k Keeper) GetDenom(
 
 	k.cdc.MustUnmarshal(b, &val)
 	return val, true
-}
-
-// RemoveDenom removes a denom from the store
-func (k Keeper) RemoveDenom(
-	ctx sdk.Context,
-	denom string,
-
-) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DenomKeyPrefix))
-	store.Delete(types.DenomKey(
-		denom,
-	))
 }
 
 // GetAllDenom returns all denom
