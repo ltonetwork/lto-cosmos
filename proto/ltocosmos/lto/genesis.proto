@@ -1,12 +1,16 @@
 syntax = "proto3";
+
 package ltocosmos.lto;
 
 import "gogoproto/gogo.proto";
 import "ltocosmos/lto/params.proto";
+import "ltocosmos/lto/denom.proto";
 
 option go_package = "lto-cosmos/x/lto/types";
 
 // GenesisState defines the lto module's genesis state.
 message GenesisState {
-  Params params = 1 [(gogoproto.nullable) = false];
+           Params params    = 1 [(gogoproto.nullable) = false];
+  repeated Denom  denomList = 2 [(gogoproto.nullable) = false];
 }
+

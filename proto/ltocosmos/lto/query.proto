@@ -1,26 +1,58 @@
 syntax = "proto3";
+
 package ltocosmos.lto;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "ltocosmos/lto/params.proto";
+import "ltocosmos/lto/denom.proto";
 
 option go_package = "lto-cosmos/x/lto/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/lto-cosmos/lto/params";
+  
+  }
+  
+  // Queries a list of Denom items.
+  rpc Denom    (QueryGetDenomRequest) returns (QueryGetDenomResponse) {
+    option (google.api.http).get = "/lto-cosmos/lto/denom/{denom}";
+  
+  }
+  rpc DenomAll (QueryAllDenomRequest) returns (QueryAllDenomResponse) {
+    option (google.api.http).get = "/lto-cosmos/lto/denom";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetDenomRequest {
+  string denom = 1;
+}
+
+message QueryGetDenomResponse {
+  Denom denom = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllDenomRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllDenomResponse {
+  repeated Denom                                  denom      = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
