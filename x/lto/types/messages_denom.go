@@ -56,10 +56,20 @@ func (msg *MsgCreateDenom) GetSignBytes() []byte {
 	return sdk.MustSortJSON(bz)
 }
 
+// validates input before message gets to keeper
 func (msg *MsgCreateDenom) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Owner)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid owner address (%s)", err)
+	}
+	if len(msg.Ticker) < 3 {
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "ticker length must be at least 3")
+	}
+	if len(msg.Ticker) > 10 {
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "ticker length must be at most 10")
+	}
+	if msg.MaxSupply == 0 {
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "max supply must be greater than 0")
 	}
 	return nil
 }
@@ -109,6 +119,9 @@ func (msg *MsgUpdateDenom) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Owner)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid owner address (%s)", err)
+	}
+	if msg.MaxSupply == 0 {
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "max supply must be greater than 0")
 	}
 	return nil
 }
