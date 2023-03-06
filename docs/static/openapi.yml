@@ -71659,7 +71659,11 @@ definitions:
         type: string
   ltocosmos.lto.MsgCreateDenomResponse:
     type: object
+  ltocosmos.lto.MsgMintAndSendTokensResponse:
+    type: object
   ltocosmos.lto.MsgUpdateDenomResponse:
+    type: object
+  ltocosmos.lto.MsgUpdateOwnerResponse:
     type: object
   ltocosmos.lto.Params:
     type: object
