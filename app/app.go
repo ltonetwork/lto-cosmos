@@ -106,6 +106,7 @@ import (
 	ltomodule "lto-cosmos/x/lto"
 	ltomodulekeeper "lto-cosmos/x/lto/keeper"
 	ltomoduletypes "lto-cosmos/x/lto/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "lto-cosmos/app/params"
@@ -113,7 +114,7 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "cosmos"
+	AccountAddressPrefix = "lto"
 	Name                 = "lto-cosmos"
 )
 
